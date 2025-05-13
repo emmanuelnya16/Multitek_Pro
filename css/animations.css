@@ -1,0 +1,246 @@
+/* animations.css - Fichier dédié aux animations CSS et keyframes */
+
+/* ==================== ANIMATIONS DE BASE ==================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from { 
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ==================== ANIMATIONS GLOBALES ==================== */
+.fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.slide-down {
+    animation: slideDown 0.8s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+}
+
+.scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* ==================== ANIMATIONS DU HEADER ==================== */
+/* Animation du soulignage des liens de navigation */
+.nav-link::after {
+    transform-origin: left center;
+    transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: right center;
+}
+
+/* Animation du bouton hamburger (mobile) */
+.navbar-toggler {
+    transition: transform 0.3s ease;
+}
+
+.navbar-toggler[aria-expanded="true"] {
+    transform: rotate(90deg);
+}
+
+.navbar-toggler-icon {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+    transform: rotate(45deg);
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+    transform: translateY(8px) rotate(-90deg);
+    opacity: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+    transform: translateY(-8px) rotate(-90deg);
+}
+
+/* ==================== ANIMATIONS DES CARTES ==================== */
+/* Animation au survol des cartes de services */
+.service-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform-style: preserve-3d;
+    will-change: transform, box-shadow;
+}
+
+.service-card:hover {
+    transform: perspective(1000px) translateZ(15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+.service-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.service-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+
+.service-link:hover::after {
+    width: 100%;
+}
+
+/* ==================== ANIMATIONS 3D LÉGÈRES ==================== */
+/* Effet de parallaxe sur les images du blog */
+.blog-card img {
+    transition: transform 0.5s ease-out;
+    transform-style: preserve-3d;
+}
+
+.blog-card:hover img {
+    transform: translateZ(10px);
+}
+
+/* Effet de flip 3D pour les cartes du dashboard */
+.dashboard-card {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.dashboard-card:hover {
+    transform: rotateY(15deg);
+}
+
+/* ==================== ANIMATIONS DU FORMULAIRE ==================== */
+/* Animation de la progress bar 3D */
+.progress-3d {
+    transform-style: preserve-3d;
+    transform: rotateX(25deg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    transition: width 0.6s ease;
+}
+
+/* Animation des étapes du formulaire */
+.form-step {
+    animation: slideUp 0.6s ease-out forwards;
+}
+
+.form-step.exiting {
+    animation: slideDown 0.4s ease-in forwards;
+}
+
+/* ==================== ANIMATIONS DE LA TIMELINE ==================== */
+.timeline-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ==================== ANIMATIONS DU PORTFOLIO ==================== */
+/* Effet de flip pour les modals */
+.modal-3d .modal-content {
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+    transform: perspective(1000px) rotateY(-90deg);
+    opacity: 0;
+}
+
+.modal-3d.show .modal-content {
+    transform: perspective(1000px) rotateY(0);
+    opacity: 1;
+}
+
+/* Animation des filtres */
+.portfolio-filter {
+    transition: all 0.3s ease;
+}
+
+.portfolio-filter:hover {
+    transform: translateY(-3px);
+}
+
+/* ==================== ANIMATIONS DU FOOTER ==================== */
+/* Animation subtile des liens du footer */
+.footer-link {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background-color: white;
+    transition: width 0.3s ease;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+@media (max-width: 768px) {
+    .service-card:hover {
+        transform: none;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .dashboard-card:hover {
+        transform: none;
+    }
+}

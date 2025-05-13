@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animation Config - Bourge</title>
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    svg {
+      width: 80%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <!-- Colle ici ton SVG avec les id: letter1 à letter6 -->
+4
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    const letters = ["#letter1", "#letter2", "#letter3", "#letter4", "#letter5", "#letter6"];
+
+    letters.forEach((id, i) => {
+      gsap.fromTo(id,
+        {
+          scale: 0,
+          opacity: 0,
+          transformOrigin: "center"
+        },
+        {
+          scale: 1.2,
+          opacity: 1,
+          duration: 1,
+          delay: i * 0.2,
+          ease: "elastic.out(1, 0.5)",
+          onComplete: () => {
+            gsap.to(id, {
+              scale: 1,
+              duration: 0.5,
+              ease: "power1.out"
+            });
+          }
+        }
+      );
+    });
+  </script>
+</body>
+</html>
