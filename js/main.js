@@ -27,60 +27,85 @@ function initNavbar() {
 }
 
 // 2. Hero 3D Animation with Three.js
-function initHeroAnimation(boxSize = 6) {
-    const container = document.getElementById('hero-3d-animation');
-    if (!container || typeof THREE === 'undefined') return;
+// ... existing code ...
 
+// 2. Hero 3D Animation with Three.js
+// ... existing code ...
+
+// 2. Hero 3D Animation with Three.js
+// ... existing code ...
+
+// 2. Hero 3D Animation with Three.js
+// ... existing code ...
+
+// 2. Hero 3D Animation with Three.js
+// ... existing code ...
+
+// 2. Hero 3D Animation with Three.js - Version simplifiée pour débogage
+function initHeroAnimation() {
+    console.log("Initialisation de l'animation hero...");
+    const container = document.getElementById('hero-3d-animation');
+    
+    if (!container) {
+        console.error("Container hero-3d-animation non trouvé!");
+        return;
+    }
+    
+    if (typeof THREE === 'undefined') {
+        console.error("Three.js n'est pas chargé!");
+        return;
+    }
+    
+    console.log("Three.js est chargé, création de la scène...");
+    
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      75,
-      container.clientWidth / container.clientHeight,
-      0.1,
-      1000
+        60,
+        container.clientWidth / container.clientHeight,
+        0.1,
+        1000
     );
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    
+    const renderer = new THREE.WebGLRenderer({ 
+        antialias: true, 
+        alpha: true
+    });
     renderer.setSize(container.clientWidth, container.clientHeight);
     container.appendChild(renderer.domElement);
-
-    // Lights
-    scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-    const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    dirLight.position.set(1, 1, 1);
-    scene.add(dirLight);
-
-    // Création de la boîte 3D (taille paramétrable)
-    const geometry = new THREE.BoxGeometry(boxSize, boxSize, boxSize);
-    const material = new THREE.MeshPhongMaterial({
-      color: 0x007bff,
-      specular: 0x111111,
-      shininess: 30
-    });
+    
+    // Lumière simple
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+    
+    // Cube simple pour tester
+    const geometry = new THREE.BoxGeometry(2, 2, 2);
+    const material = new THREE.MeshBasicMaterial({ color: 0x53ebe3 });
     const cube = new THREE.Mesh(geometry, material);
     scene.add(cube);
-
-    camera.position.z = boxSize * 2; // on recule la caméra proportionnellement à la taille
-
-    // Boucle d’animation
+    
+    camera.position.z = 5;
+    
+    // Animation simple
     function animate() {
         requestAnimationFrame(animate);
         cube.rotation.x += 0.01;
         cube.rotation.y += 0.01;
         renderer.render(scene, camera);
     }
-
-    // Gestion du redimensionnement
-    window.addEventListener('resize', () => {
-        camera.aspect = container.clientWidth / container.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(container.clientWidth, container.clientHeight);
-    });
-
+    
     animate();
+    console.log("Animation démarrée!");
 }
 
-// Pour appeler avec une boîte de taille 4 × 4 × 4 :
-initHeroAnimation(4);
+// ... existing code ...
 
+// ... existing code ...
+
+// ... existing code ...
+
+// Suppression de l'appel avec paramètre
+// ... existing code ...
+
+// ... existing code ...
 
 // 3. Service Cards 3D Effects
 function initServiceCards() {
